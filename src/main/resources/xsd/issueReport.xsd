@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ir="com.github.bukama.ir/01.00"
+		   targetNamespace="com.github.bukama.ir/01.00"
+		   elementFormDefault="qualified">
+
+	<xs:element name="issueReport">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				The root element of the report
+			</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="issues">
+					<xs:annotation>
+						<xs:documentation xml:lang="en">
+							List with all issues
+						</xs:documentation>
+					</xs:annotation>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="issue" type="ir:issueType" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="issueType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				Single issue with its properties, tests and a summary of the test results
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="summary" type="ir:summaryType"/>
+			<xs:element name="tests">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="testCase" type="ir:testCaseType" minOccurs="0" maxOccurs="unbounded"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="issueId" type="xs:string" use="required"/>
+		<xs:attribute name="description" type="xs:string" use="optional"/>
+		<xs:attribute name="priority" type="xs:string" use="optional"/>
+	</xs:complexType>
+
+
+	<xs:complexType name="testCaseType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				A specific test case with its properties and the execution result
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="testId" type="xs:string" use="required"/>
+		<xs:attribute name="result" type="xs:string" use="required"/>
+	</xs:complexType>
+
+
+	<xs:complexType name="summaryType">
+		<xs:annotation>
+			<xs:documentation xml:lang="en">
+				Type for statistics
+			</xs:documentation>
+		</xs:annotation>
+		<xs:attribute name="total" type="xs:int" use="required"/>
+		<xs:attribute name="successful" type="xs:int" use="required"/>
+		<xs:attribute name="failed" type="xs:int" use="required"/>
+		<xs:attribute name="aborted" type="xs:int" use="required"/>
+	</xs:complexType>
+
+</xs:schema>

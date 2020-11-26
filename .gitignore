@@ -34,3 +34,4 @@ hs_err_pid*
 # Maven
 */target/*
 target
+/src/main/java/META-INF/JAXB/episode_xjc_1.xjb
