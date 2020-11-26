@@ -28,7 +28,7 @@
         <dependency>
             <groupId>org.junit-pioneer</groupId>
             <artifactId>junit-pioneer</artifactId>
-            <version>1.0.1-ISSUE</version>
+            <version>1.1.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
