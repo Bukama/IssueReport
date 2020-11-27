@@ -23,7 +23,14 @@ public enum Config {
    */
   ISSUELIST_EXTENSION(
       "com.github.bukama.ir.issuelist.extension",
-      "csv");
+      "csv"),
+  /**
+   * Skip first line of the issue list, when it's an csv file.
+   * Default: "false"
+   */
+  ISSUELIST_CSV_SKIPFIRSTLINE(
+      "com.github.bukama.ir.issuelist.csv.skipfirstline",
+      "false");
 
   private final String key;
   private final String defaultValue;
@@ -36,9 +43,18 @@ public enum Config {
   /**
    * Reads the configuration from the system properties.
    * 
-   * @return Read value or default value if not set.
+   * @return String value or default value if not set
    */
-  public String value() {
+  public String asString() {
     return System.getProperty(this.key, this.defaultValue);
+  }
+
+  /**
+   * Returns the value or its default as boolean.
+   * 
+   * @return Boolean value or default value if not set
+   */
+  public boolean asBoolean() {
+    return Boolean.parseBoolean(asString());
   }
 }
