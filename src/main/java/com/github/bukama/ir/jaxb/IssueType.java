@@ -9,6 +9,7 @@ package com.github.bukama.ir.jaxb;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -69,6 +70,28 @@ public class IssueType {
   protected String description;
   @XmlAttribute(name = "priority")
   protected String priority;
+
+  /**
+   * Default constructor.
+   */
+  public IssueType() {
+  }
+
+  /**
+   * Constructor with attributes only.
+   * 
+   * @param issueId
+   *          Id of the issue
+   * @param description
+   *          Description of the issue
+   * @param priority
+   *          Priority of the issue
+   */
+  public IssueType(String issueId, String description, String priority) {
+    this.issueId = issueId;
+    this.description = description;
+    this.priority = priority;
+  }
 
   /**
    * Gets the value of the summary property.
@@ -249,4 +272,26 @@ public class IssueType {
 
   }
 
+  @Override
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    IssueType issueType = (IssueType) o;
+    return Objects.equals(summary, issueType.summary) && Objects.equals(tests, issueType.tests)
+        && Objects.equals(issueId, issueType.issueId) && Objects.equals(description, issueType.description)
+        && Objects.equals(priority, issueType.priority);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(summary, tests, issueId, description, priority);
+  }
+
+  @Override
+  public String toString() {
+    return "IssueType{" + "summary=" + summary + ", tests=" + tests + ", issueId='" + issueId + '\'' + ", description='"
+        + description + '\'' + ", priority='" + priority + '\'' + '}';
+  }
 }

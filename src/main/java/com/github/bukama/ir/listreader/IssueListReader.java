@@ -26,11 +26,11 @@ public class IssueListReader {
     switch (SupportedListTypes.byConfig()) {
       case CSV:
       default:
-        reader = new CSVReader();
+        reader = new IssueReportCSVReader();
         break;
     }
     String fileName = buildFileName();
-    reader.readFile(fileName);
+    issues = reader.readFile(fileName);
 
     return issues;
   }
