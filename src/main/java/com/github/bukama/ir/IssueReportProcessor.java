@@ -57,21 +57,21 @@ public class IssueReportProcessor implements IssueProcessor {
    */
   List<IssueType> mergeLists(List<IssueType> allIssues, List<IssueTestSuite> allIssueTestsSuites) {
 
-    ConcurrentHashMap<String, IssueType> mergedList = new ConcurrentHashMap<>();
+    ConcurrentHashMap<String, IssueType> merged = new ConcurrentHashMap<>();
 
-    allIssues.forEach(issue -> mergedList.put(issue.getIssueId(), issue));
+    allIssues.forEach(issue -> merged.put(issue.getIssueId(), issue));
 
     for (IssueTestSuite testSuite : allIssueTestsSuites) {
       String issueId = testSuite.issueId();
 
-      if (!mergedList.containsKey(issueId)) {
-        mergedList.put(issueId, new IssueType(issueId));
+      if (!merged.containsKey(issueId)) {
+        merged.put(issueId, new IssueType(issueId));
       }
 
-      mergedList.get(issueId).getTests().getTestCase().addAll(convertToTestCaseType(testSuite.tests()));
+      merged.get(issueId).getTests().getTestCase().addAll(convertToTestCaseType(testSuite.tests()));
     }
 
-    return new ArrayList<>(mergedList.values());
+    return new ArrayList<>(merged.values());
   }
 
   /**

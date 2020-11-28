@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.SetSystemProperty;
 
 @SetSystemProperty(key = "com.github.bukama.ir.issuelist.directory", value = "./examples")
-public class CSVReaderTests {
+public class IssueReportCSVReaderTests {
 
   IssueReportCSVReader sut;
   IssueListReader issueListReader = new IssueListReader();
@@ -81,5 +81,14 @@ public class CSVReaderTests {
 
     assertThatThrownBy(() -> sut.readFile(fileName)).isInstanceOf(IllegalArgumentException.class)
         .hasMessage("Line does not contain three elements, but [2]");
+  }
+
+  @Test
+  @SetSystemProperty(key = "com.github.bukama.ir.issuelist.filename", value = "nonexisting")
+  void FileNotFound() {
+    String fileName = issueListReader.buildFileName();
+
+    List<IssueType> actual = new ArrayList<>(sut.readFile(fileName));
+    assertThat(actual.size()).isEqualTo(0);
   }
 }

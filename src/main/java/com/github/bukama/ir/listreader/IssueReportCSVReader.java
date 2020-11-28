@@ -1,7 +1,6 @@
 
 package com.github.bukama.ir.listreader;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
@@ -42,7 +41,7 @@ public class IssueReportCSVReader implements IssueReaderProvider {
       while ((nextLine = reader.readNext()) != null) {
         processLine(nextLine);
       }
-    } catch (FileNotFoundException e) {
+    } catch (NullPointerException e) {
       LOG.severe(String.format("Issue list not found at [%s]", fileName));
     } catch (IOException e) {
       LOG.severe(String.format("Error while accessing issue list: [%s]", e.getMessage()));
