@@ -8,6 +8,7 @@ import com.github.bukama.ir.jaxb.IssueReport;
 import com.github.bukama.ir.jaxb.IssueType;
 import com.github.bukama.ir.listreader.IssueListReader;
 import com.github.bukama.ir.utils.IssueUtils;
+import com.github.bukama.ir.utils.SummaryUtils;
 
 import org.junitpioneer.jupiter.IssueProcessor;
 import org.junitpioneer.jupiter.IssueTestSuite;
@@ -27,18 +28,10 @@ public class IssueReportProcessor implements IssueProcessor {
     List<IssueType> allIssues = ISSUE_LIST_READER.readIssues();
 
     // Merge list, if theres something to merge
-    if (allIssueTestsSuites.isEmpty()) {
-      if (!allIssues.isEmpty()) {
-        report.getIssues().getIssue().addAll(allIssues);
-      } else {
-        LOG.info("No issues provided and no tests annotated with tests");
-      }
-    } else {
-      report.getIssues().getIssue().addAll(IssueUtils.mergeLists(allIssues, allIssueTestsSuites));
-    }
+    allIssues = IssueUtils.mergeLists(allIssues, allIssueTestsSuites);
 
     // TODO: Create summaries
-
+    allIssues = SummaryUtils.createSummaries(allIssues);
     // TODO: Marshall it a report
   }
 
