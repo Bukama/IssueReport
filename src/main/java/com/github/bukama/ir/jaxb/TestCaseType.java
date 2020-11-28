@@ -47,6 +47,14 @@ public class TestCaseType {
   @XmlAttribute(name = "result", required = true)
   protected String result;
 
+  public TestCaseType() {
+  }
+
+  public TestCaseType(String testId, String result) {
+    this.testId = testId;
+    this.result = result;
+  }
+
   /**
    * Gets the value of the testId property.
    * 

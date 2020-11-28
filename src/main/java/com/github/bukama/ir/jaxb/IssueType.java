@@ -79,6 +79,16 @@ public class IssueType {
 
   /**
    * Constructor with attributes only.
+   *
+   * @param issueId
+   *          Id of the issue
+   */
+  public IssueType(String issueId) {
+    this.issueId = issueId;
+  }
+
+  /**
+   * Constructor with attributes only.
    * 
    * @param issueId
    *          Id of the issue
