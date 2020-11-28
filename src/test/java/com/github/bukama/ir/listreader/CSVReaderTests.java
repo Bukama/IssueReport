@@ -36,7 +36,23 @@ public class CSVReaderTests {
     List<IssueType> actual = new ArrayList<>(sut.readFile(fileName));
 
     assertAll(() -> assertThat(actual.size()).isEqualTo(1), () -> assertThat(actual.get(0)).isEqualTo(expected));
+  }
 
+  @Test
+  @SetSystemProperty(key = "com.github.bukama.ir.issuelist.filename", value = "threeLines")
+  @SetSystemProperty(key = "com.github.bukama.ir.issuelist.csv.skipfirstline", value = "false")
+  void processFileWithThreeLines() {
+    List<IssueType> expectedIssues = new ArrayList<>();
+    expectedIssues.add(new IssueType("req-123", "description with spaces", "HIGH"));
+    expectedIssues.add(new IssueType("req-222", "second", "2"));
+    expectedIssues.add(new IssueType("req-333", "third", "LOW"));
+
+    String fileName = issueListReader.buildFileName();
+
+    List<IssueType> actual = new ArrayList<>(sut.readFile(fileName));
+
+    assertAll(() -> assertThat(actual.size()).isEqualTo(3),
+        () -> assertThat(actual).containsExactlyInAnyOrderElementsOf(expectedIssues));
   }
 
   @Test
