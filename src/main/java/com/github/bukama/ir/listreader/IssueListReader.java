@@ -3,9 +3,11 @@ package com.github.bukama.ir.listreader;
 
 import java.io.File;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import com.github.bukama.ir.config.Config;
 import com.github.bukama.ir.jaxb.IssueType;
@@ -19,7 +21,7 @@ public class IssueListReader {
 
   private Set<IssueType> issues = new HashSet<>();
 
-  Set<IssueType> readIssues() {
+  public List<IssueType> readIssues() {
 
     IssueReaderProvider reader;
 
@@ -32,7 +34,7 @@ public class IssueListReader {
     String fileName = buildFileName();
     issues = reader.readFile(fileName);
 
-    return issues;
+    return issues.stream().collect(Collectors.toList());
   }
 
   /**
