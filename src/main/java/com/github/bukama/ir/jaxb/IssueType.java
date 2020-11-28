@@ -75,6 +75,7 @@ public class IssueType {
    * Default constructor.
    */
   public IssueType() {
+    this.tests = new Tests();
   }
 
   /**
@@ -85,6 +86,7 @@ public class IssueType {
    */
   public IssueType(String issueId) {
     this.issueId = issueId;
+    this.tests = new Tests();
   }
 
   /**
@@ -101,6 +103,7 @@ public class IssueType {
     this.issueId = issueId;
     this.description = description;
     this.priority = priority;
+    this.tests = new Tests();
   }
 
   /**
@@ -280,6 +283,25 @@ public class IssueType {
       return this.testCase;
     }
 
+    @Override
+    public boolean equals(Object o) {
+      if (this == o)
+        return true;
+      if (o == null || getClass() != o.getClass())
+        return false;
+      Tests tests = (Tests) o;
+      return Objects.equals(testCase, tests.testCase);
+    }
+
+    @Override
+    public int hashCode() {
+      return Objects.hash(testCase);
+    }
+
+    @Override
+    public String toString() {
+      return "Tests{" + "testCase=" + testCase + '}';
+    }
   }
 
   @Override
