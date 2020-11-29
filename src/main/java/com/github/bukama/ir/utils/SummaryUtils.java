@@ -37,6 +37,6 @@ public class SummaryUtils {
       returnList.add(issue);
     }
 
-    return allIssues;
+    return returnList;
   }
 }
