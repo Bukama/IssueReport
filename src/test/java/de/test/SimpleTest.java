@@ -16,6 +16,6 @@ public class SimpleTest {
   @Test
   @Issue("req222")
   void anotherTest() {
-    Assertions.assertThat(true).isEqualTo(false);
+    Assertions.assertThat(true).isEqualTo(true);
   }
 }

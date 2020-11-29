@@ -2,12 +2,12 @@
 package com.github.bukama.ir.listreader;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import com.github.bukama.ir.config.Config;
 import com.github.bukama.ir.jaxb.IssueType;
@@ -25,6 +25,7 @@ public class IssueListReader {
 
     IssueReaderProvider reader;
 
+    // Switch by purpose for further types
     switch (SupportedListTypes.byConfig()) {
       case CSV:
       default:
@@ -34,7 +35,7 @@ public class IssueListReader {
     String fileName = buildFileName();
     issues = reader.readFile(fileName);
 
-    return issues.stream().collect(Collectors.toList());
+    return new ArrayList<>(issues);
   }
 
   /**
@@ -43,7 +44,11 @@ public class IssueListReader {
    * @return Full file name
    */
   String buildFileName() {
-    return Config.ISSUELIST_DIRECTORY.asString() + File.separator + Config.ISSUELIST_FILENAME.asString() + "."
+    String subDir = (!Config.ISSUELIST_DIRECTORY.asString().trim().isEmpty())
+        ? Config.ISSUELIST_DIRECTORY.asString() + File.separator
+        : "";
+
+    return "." + File.separator + subDir + Config.ISSUELIST_FILENAME.asString() + "."
         + Config.ISSUELIST_EXTENSION.asString().toLowerCase(Locale.ROOT);
   }
 

@@ -4,12 +4,13 @@ package com.github.bukama.ir.config;
 public enum Config {
 
   /**
-   * Directory of the issue list.
-   * Default: "."
+   * Subdirectory of the issue list.
+   * The directory will be prefixed with "." and the the value of File.separator, together e.g "./".
+   * Default: ""
    */
   ISSUELIST_DIRECTORY(
       "com.github.bukama.ir.issuelist.directory",
-      "."),
+      ""),
   /**
    * Filename of the issue list without extension or path.
    * Default: "issuelist"
@@ -30,7 +31,15 @@ public enum Config {
    */
   ISSUELIST_CSV_SKIPFIRSTLINE(
       "com.github.bukama.ir.issuelist.csv.skipfirstline",
-      "false");
+      "false"),
+  /**
+   * Directory where the report is generated (without trailing slash).
+   * The directory will be prefixed with "." and the the value of File.separator, together e.g "./".
+   * Default: "target/reports"
+   */
+  REPORT_DIRECTORY(
+      "com.github.bukama.ir.report.directory",
+      "target/reports");
 
   private final String key;
   private final String defaultValue;

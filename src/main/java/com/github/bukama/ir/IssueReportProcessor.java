@@ -18,6 +18,7 @@ import javax.xml.validation.Schema;
 import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 
+import com.github.bukama.ir.config.Config;
 import com.github.bukama.ir.jaxb.IssueReport;
 import com.github.bukama.ir.jaxb.IssueType;
 import com.github.bukama.ir.listreader.IssueListReader;
@@ -59,9 +60,8 @@ public class IssueReportProcessor implements IssueProcessor {
 
     try {
       // Create report file (delete first, if already exists)
-      // Target directory is "./target/reports/issueReport.xml"
-      String currentDir = System.getProperty("user.dir");
-      Path xmlFile = Paths.get(currentDir, "target", "reports", "issueReport.xml");
+      String fileName = buildReportFileName();
+      Path xmlFile = Paths.get(fileName);
       Files.deleteIfExists(xmlFile);
       Files.createDirectories(xmlFile.getParent());
       Files.createFile(xmlFile);
@@ -88,6 +88,15 @@ public class IssueReportProcessor implements IssueProcessor {
       // Catch all to not break anything else, just because the report could not been created
       LOG.log(Level.WARNING, "Error while creating the pioneer report", t);
     }
+  }
+
+  /**
+   * Creates the full file name of the report based on the system properties.
+   *
+   * @return Full file name
+   */
+  String buildReportFileName() {
+    return "." + File.separator + Config.REPORT_DIRECTORY.asString() + File.separator + "issueReport.xml";
   }
 
 }

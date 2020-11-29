@@ -14,7 +14,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junitpioneer.jupiter.SetSystemProperty;
 
-@SetSystemProperty(key = "com.github.bukama.ir.issuelist.directory", value = "./examples")
+@SetSystemProperty(key = "com.github.bukama.ir.issuelist.directory", value = "examples")
 public class IssueReportCSVReaderTests {
 
   IssueReportCSVReader sut;
