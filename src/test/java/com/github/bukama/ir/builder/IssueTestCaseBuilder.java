@@ -27,4 +27,13 @@ public class IssueTestCaseBuilder {
 
     return tests;
   }
+
+  public static List<IssueTestCase> listWithResult(int numberOfTests, TestExecutionResult.Status status) {
+    List<IssueTestCase> tests = new ArrayList<>();
+
+    for (int i = 0; i < numberOfTests; i++) {
+      tests.add(new IssueTestCase(UUID.randomUUID().toString(), status));
+    }
+    return tests;
+  }
 }

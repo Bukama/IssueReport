@@ -87,6 +87,7 @@ public class IssueType {
   public IssueType(String issueId) {
     this.issueId = issueId;
     this.tests = new Tests();
+    this.summary = new SummaryType();
   }
 
   /**
@@ -104,6 +105,7 @@ public class IssueType {
     this.description = description;
     this.priority = priority;
     this.tests = new Tests();
+    this.summary = new SummaryType();
   }
 
   /**
