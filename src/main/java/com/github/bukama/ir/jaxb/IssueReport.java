@@ -33,7 +33,7 @@ import javax.xml.bind.annotation.XmlType;
  *             &lt;complexContent&gt;
  *               &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *                 &lt;sequence&gt;
- *                   &lt;element name="issue" type="{com.github.bukama.ir/01.00}issueType" maxOccurs="unbounded" minOccurs="0"/&gt;
+ *                   &lt;element name="issue" type="{https://com.github.bukama.ir/01.00}issueType" maxOccurs="unbounded" minOccurs="0"/&gt;
  *                 &lt;/sequence&gt;
  *               &lt;/restriction&gt;
  *             &lt;/complexContent&gt;
@@ -51,6 +51,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "", propOrder = { "issues" })
 @XmlRootElement(name = "issueReport")
 public class IssueReport {
+
+  public IssueReport() {
+    this.issues = new Issues();
+  }
+
+  public IssueReport(List<IssueType> allIssues) {
+    this.issues = new Issues();
+    this.issues.getIssue().addAll(allIssues);
+  }
 
   @XmlElement(required = true)
   protected Issues issues;
@@ -91,7 +100,7 @@ public class IssueReport {
    *   &lt;complexContent&gt;
    *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
    *       &lt;sequence&gt;
-   *         &lt;element name="issue" type="{com.github.bukama.ir/01.00}issueType" maxOccurs="unbounded" minOccurs="0"/&gt;
+   *         &lt;element name="issue" type="{https://com.github.bukama.ir/01.00}issueType" maxOccurs="unbounded" minOccurs="0"/&gt;
    *       &lt;/sequence&gt;
    *     &lt;/restriction&gt;
    *   &lt;/complexContent&gt;
@@ -103,6 +112,10 @@ public class IssueReport {
   @XmlAccessorType(XmlAccessType.FIELD)
   @XmlType(name = "", propOrder = { "issue" })
   public static class Issues {
+
+    public Issues() {
+      this.issue = new ArrayList<>();
+    }
 
     protected List<IssueType> issue;
 
@@ -130,9 +143,6 @@ public class IssueReport {
      * 
      */
     public List<IssueType> getIssue() {
-      if (issue == null) {
-        issue = new ArrayList<IssueType>();
-      }
       return this.issue;
     }
 

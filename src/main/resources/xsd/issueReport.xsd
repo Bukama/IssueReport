@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ir="com.github.bukama.ir/01.00"
-		   targetNamespace="com.github.bukama.ir/01.00"
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:ir="https://com.github.bukama.ir/01.00"
+		   targetNamespace="https://com.github.bukama.ir/01.00"
 		   elementFormDefault="qualified">
 
 	<xs:element name="issueReport">
