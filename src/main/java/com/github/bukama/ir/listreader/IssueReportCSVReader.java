@@ -42,7 +42,7 @@ public class IssueReportCSVReader implements IssueReaderProvider {
         processLine(nextLine);
       }
     } catch (NullPointerException e) {
-      LOG.severe(String.format("Issue list not found at [%s]", fileName));
+      LOG.warning(String.format("Issue list not found at [%s]. Continue without using it.", fileName));
     } catch (IOException e) {
       LOG.severe(String.format("Error while accessing issue list: [%s]", e.getMessage()));
     } catch (CsvValidationException e) {
