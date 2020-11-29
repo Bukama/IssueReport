@@ -3,6 +3,8 @@ This library is a service provider for the [Pioneers IssueExtension](https://jun
 It consumes the data form the extension (a list of testcases, grouped by the issueId they are annotated with), combines it with a list of issue and check the executed tests if and how well the issues are covered.
 At the end it will a report is generated and published.
 
+For questions or feedback open [an issue](https://github.com/Bukama/IssueReport/issues) or contact me at [Twitter](https://twitter.com/bukamabish).
+
 # Usage
 This section covers how to use the library.
 Some things are configurable - see [configuration](#configuration) section for further details.
