@@ -12,4 +12,10 @@ public class SimpleTest {
   void simpleTest() {
     Assertions.assertThat(true).isEqualTo(true);
   }
+
+  @Test
+  @Issue("req222")
+  void anotherTest() {
+    Assertions.assertThat(true).isEqualTo(false);
+  }
 }
