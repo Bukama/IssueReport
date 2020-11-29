@@ -1,5 +1,5 @@
 # IssueReport
-This library is a service provider for the [Pioneers IssueExtension](https://junit-pioneer.org/docs/issue/).
+This library is a service provider for the [JUnit Pioneer's IssueExtension](https://junit-pioneer.org/docs/issue/).
 It consumes the data form the extension (a list of testcases, grouped by the issueId they are annotated with), combines it with a list of issue and check the executed tests if and how well the issues are covered.
 At the end it will a report is generated and published.
 
