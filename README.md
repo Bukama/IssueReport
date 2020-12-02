@@ -50,6 +50,31 @@ The report (`issueReport.xml`) is always published in XML-format using JAXB unde
 
 _Further formats, e.g. HTML, are planed and will then be configurable._
 
+### Example
+This example shows a report which include:
+* Two issues, one with full details, one without
+* One test for each of the issues
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<issueReport xmlns="https://com.github.bukama.ir/01.00">
+    <issues>
+        <issue issueId="req222" description="Sample description" priority="HIGH">
+            <summary total="1" successful="1" failed="0" aborted="0"/>
+            <tests>
+                <testCase testId="[engine:junit-jupiter]/[class:de.test.SimpleTest]/[method:anotherTest()]" result="SUCCESSFUL"/>
+            </tests>
+        </issue>
+        <issue issueId="req123">
+            <summary total="1" successful="0" failed="1" aborted="0"/>
+            <tests>
+                <testCase testId="[engine:junit-jupiter]/[class:de.test.SimpleTest]/[method:simpleTest()]" result="FAILED"/>
+            </tests>
+        </issue>
+    </issues>
+</issueReport
+```
+
 # Configuration
 Several values are configurable by system properties.
 The following table shows the keys and default value (a `-` means no value is set).
